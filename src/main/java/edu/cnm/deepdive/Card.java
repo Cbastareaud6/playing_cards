@@ -1,17 +1,21 @@
 package edu.cnm.deepdive;
 
+import java.util.Objects;
+
 @SuppressWarnings("unused")
 public class Card implements Comparable<Card> {
 
-  private final   Suit suit;
+  private final Suit suit;
   private final Rank rank;
   private final String symbol;
+  private final int hash;
 
 
   public Card(Suit suit, Rank rank) {
     this.suit = suit;
     this.rank = rank;
     symbol = rank.getSymbol() + suit.getSymbol();
+    hash = Objects.hash(suit,rank);
   }
 
   public Suit getSuit() {
@@ -30,12 +34,33 @@ public class Card implements Comparable<Card> {
 
   @Override
   public int compareTo(Card other) {
-    int comparison ;
+    int comparison;
     comparison = this.suit.compareTo(other.suit);
-    if (comparison== 0) {
-      comparison=this.rank.compareTo(other.rank);
+    if (comparison == 0) {
+      comparison = this.rank.compareTo(other.rank);
     }
 
     return comparison;
+  }
+
+  @Override
+  public int hashCode() {
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    boolean isEqual ;
+    if (this == obj) {
+      isEqual = true;
+    } else if (obj instanceof Card) {
+      Card other = (Card) obj;
+      isEqual =(this.suit==other.suit && this.rank == other.rank);
+    }else {
+      isEqual=false;
+
+    }
+    return isEqual;
+
   }
 }

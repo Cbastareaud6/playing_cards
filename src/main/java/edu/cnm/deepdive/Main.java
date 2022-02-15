@@ -7,8 +7,13 @@ public class Main {
     System.out.println(d);
     d.shuffle();
     System.out.println(d);
+    for (Card c :d ) {
+      System.out.println(c);
+
+    }
     d.sort();
     System.out.println(d);
+
   }
 
 }
