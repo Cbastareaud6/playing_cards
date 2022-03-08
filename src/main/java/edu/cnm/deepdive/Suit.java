@@ -24,5 +24,9 @@ public enum Suit {
       BLACK,
       RED
     }
+
+  public Color getColor() {
+    return color;
   }
+}
 
